@@ -1,0 +1,17 @@
+label{
+  display: block;
+  text-align: justify;
+}
+
+#newBike{
+  border:1px solid black;
+  margin:10px;
+  margin:7px;
+}
+
+.bikeCard{
+  border:1px solid black;
+  margin:8px auto 6px auto;
+  padding: 6px;
+
+}

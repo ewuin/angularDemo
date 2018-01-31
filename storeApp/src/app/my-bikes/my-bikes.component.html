@@ -1,0 +1,154 @@
+<router-outlet></router-outlet>
+
+<div id="wrapper">
+
+<div id="header">
+<h1>Bicycle Marketplace</h1>
+  my Bikes works! {{userID}}
+<a [routerLink]="['/browse',userID]">Browse</a> | <a [routerLink]="['/mybikes',userID]">My Listings</a> |<a (click)="logOut()">Logout</a>
+
+</div>
+
+<div id="newBike">
+  <form (submit)="onSubmit()">
+    <label>Bike Name/Title: <input name="title" type="text" required [(ngModel)]="bike.title" #title="ngModel"></label>
+    <label>Description: <textarea name="description" cols="30" rows="4" placeholder="Enter a description here ..." required [(ngModel)]="bike.description" #description="ngModel"></textarea></label>
+    <label>City: <input type="text" name="addressCity" required minlength="3" maxlength="45" [(ngModel)]="address.city" #addressCity='ngModel'> </label>
+    {{addressCity.errors |json}}
+    {{addressCity.valid |json}}
+  <label>State: <select name="addressState" required [(ngModel)]="address.state" #addressState='ngModel'>
+    <option value="AL">Alabama</option>
+    <option value="AK">Alaska</option>
+    <option value="AZ">Arizona</option>
+    <option value="AR">Arkansas</option>
+    <option value="CA">California</option>
+    <option value="CO">Colorado</option>
+    <option value="CT">Connecticut</option>
+    <option value="DE">Delaware</option>
+    <option value="DC">District Of Columbia</option>
+    <option value="FL">Florida</option>
+    <option value="GA">Georgia</option>
+    <option value="HI">Hawaii</option>
+    <option value="ID">Idaho</option>
+    <option value="IL">Illinois</option>
+    <option value="IN">Indiana</option>
+    <option value="IA">Iowa</option>
+    <option value="KS">Kansas</option>
+    <option value="KY">Kentucky</option>
+    <option value="LA">Louisiana</option>
+    <option value="ME">Maine</option>
+    <option value="MD">Maryland</option>
+    <option value="MA">Massachusetts</option>
+    <option value="MI">Michigan</option>
+    <option value="MN">Minnesota</option>
+    <option value="MS">Mississippi</option>
+    <option value="MO">Missouri</option>
+    <option value="MT">Montana</option>
+    <option value="NE">Nebraska</option>
+    <option value="NV">Nevada</option>
+    <option value="NH">New Hampshire</option>
+    <option value="NJ">New Jersey</option>
+    <option value="NM">New Mexico</option>
+    <option value="NY">New York</option>
+    <option value="NC">North Carolina</option>
+    <option value="ND">North Dakota</option>
+    <option value="OH">Ohio</option>
+    <option value="OK">Oklahoma</option>
+    <option value="OR">Oregon</option>
+    <option value="PA">Pennsylvania</option>
+    <option value="RI">Rhode Island</option>
+    <option value="SC">South Carolina</option>
+    <option value="SD">South Dakota</option>
+    <option value="TN">Tennessee</option>
+    <option value="TX">Texas</option>
+    <option value="UT">Utah</option>
+    <option value="VT">Vermont</option>
+    <option value="VA">Virginia</option>
+    <option value="WA">Washington</option>
+    <option value="WV">West Virginia</option>
+    <option value="WI">Wisconsin</option>
+    <option value="WY">Wyoming</option>
+  </select> </label>
+  {{addressState.errors |json}}
+  {{addressState.valid |json}}
+  <input style="display:block" type="submit">
+  </form>
+</div>
+
+
+<div class="bikeCard" *ngFor="let b of userData.bikesOwned">
+  <form  name="editBikes" >
+  <label>Bike Name/Title: <input name="title" type="text" required [(ngModel)]="b.title" #title="ngModel"></label>
+  <label>Description: <textarea name="description" cols="30" rows="4" placeholder="Enter a description here ..." required [(ngModel)]="b.description" #description="ngModel"></textarea></label>
+  <label>City: <input type="text" name="addressCity" required minlength="3" maxlength="45" [(ngModel)]="b.location.city" #addressCity='ngModel'> </label>
+  {{addressCity.errors |json}}
+  {{addressCity.valid |json}}
+<label>State: <select name="addressState" required [(ngModel)]="b.location.state" #addressState='ngModel'>
+  <option value="AL">Alabama</option>
+  <option value="AK">Alaska</option>
+  <option value="AZ">Arizona</option>
+  <option value="AR">Arkansas</option>
+  <option value="CA">California</option>
+  <option value="CO">Colorado</option>
+  <option value="CT">Connecticut</option>
+  <option value="DE">Delaware</option>
+  <option value="DC">District Of Columbia</option>
+  <option value="FL">Florida</option>
+  <option value="GA">Georgia</option>
+  <option value="HI">Hawaii</option>
+  <option value="ID">Idaho</option>
+  <option value="IL">Illinois</option>
+  <option value="IN">Indiana</option>
+  <option value="IA">Iowa</option>
+  <option value="KS">Kansas</option>
+  <option value="KY">Kentucky</option>
+  <option value="LA">Louisiana</option>
+  <option value="ME">Maine</option>
+  <option value="MD">Maryland</option>
+  <option value="MA">Massachusetts</option>
+  <option value="MI">Michigan</option>
+  <option value="MN">Minnesota</option>
+  <option value="MS">Mississippi</option>
+  <option value="MO">Missouri</option>
+  <option value="MT">Montana</option>
+  <option value="NE">Nebraska</option>
+  <option value="NV">Nevada</option>
+  <option value="NH">New Hampshire</option>
+  <option value="NJ">New Jersey</option>
+  <option value="NM">New Mexico</option>
+  <option value="NY">New York</option>
+  <option value="NC">North Carolina</option>
+  <option value="ND">North Dakota</option>
+  <option value="OH">Ohio</option>
+  <option value="OK">Oklahoma</option>
+  <option value="OR">Oregon</option>
+  <option value="PA">Pennsylvania</option>
+  <option value="RI">Rhode Island</option>
+  <option value="SC">South Carolina</option>
+  <option value="SD">South Dakota</option>
+  <option value="TN">Tennessee</option>
+  <option value="TX">Texas</option>
+  <option value="UT">Utah</option>
+  <option value="VT">Vermont</option>
+  <option value="VA">Virginia</option>
+  <option value="WA">Washington</option>
+  <option value="WV">West Virginia</option>
+  <option value="WI">Wisconsin</option>
+  <option value="WY">Wyoming</option>
+</select> </label>
+{{addressState.errors |json}}
+{{addressState.valid |json}}
+<input (click)=onEditSubmit($event,b) style="display:block" type="submit" value="Edit">
+</form>
+<button (click)="onDelete($event,b)">Delete</button>
+
+    <img src="" alt="Bike Photo">
+    <h2>{{b.title}}</h2>
+    <p>{{b.description}}</p>
+    <h3>${{b.price}}</h3>
+    <p>{{b.location.city}},{{b.location.state}}</p>
+
+</div>
+
+
+</div>

@@ -1,0 +1,47 @@
+<div id="wrapper">
+<h1>Bike Shop</h1>
+
+<div id="randomBike">
+
+  <p>Random Bike</p>
+{{randomBike.title}}
+{{randomBike.location.city}},{{randomBike.location.state}}
+
+</div>
+        <div *ngIf="errorString" id="errorBox"><p>{{errorString}}</p></div>
+<div id="login">
+<form (submit)="onLogin()">
+  <label>Email: <input type="text" name="email" required minlength="7" maxlength="45" [(ngModel)]="loginUser.email"  #loginemail='ngModel'pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"> </label>
+  {{loginemail.errors |json}}
+  {{loginemail.valid |json}}
+  <label>Password: <input type="text" name="password" required [(ngModel)]="loginUser.password" #loginpassword='ngModel' pattern="^((?=.*[0-9])(?=.*[A-Z])[a-zA-Z0-9@*#]{8,15})$"> </label>
+  {{loginpassword.errors |json}}
+  {{loginpassword.valid |json}}
+  <input type="Submit" value="Login">
+</form>
+</div>
+
+
+<div id="register">
+  <legend>Register</legend>
+  <form (submit)="onRegister()">
+    <label>First Name: <input type="text" name="fname" required minlength="2" maxlength="24" [(ngModel)]="user.firstName" #fname='ngModel'> </label>
+    {{fname.errors |json}}
+    {{fname.valid |json}}
+    <label>Last Name: <input type="text" name="lname" required minlength="2" maxlength="24" [(ngModel)]="user.lastName" #lname='ngModel'> </label>
+    {{lname.errors |json}}
+    {{lname.valid |json}}
+    <label>Email: <input type="text" name="email" required minlength="7" maxlength="45" [(ngModel)]="user.email"  #email='ngModel'pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"> </label>
+    {{email.errors |json}}
+    {{email.valid |json}}
+    <label>Password: <input type="text"  name="password" required [(ngModel)]="user.password" #password='ngModel' pattern="^((?=.*[0-9])(?=.*[A-Z])[a-zA-Z0-9@*#]{8,15})$"> </label>
+    {{password.errors |json}}
+    {{password.valid |json}}
+    <label>Confirm Password: <input type="text"  name="confirm_password" required  [(ngModel)]="user.c_password" #c_password='ngModel' pattern="{{user.password}}"> </label>
+    {{c_password.errors |json}}
+    <input type="Submit">
+  </form>
+</div>
+
+
+</div>
