@@ -44,7 +44,7 @@ app.use(morgan('dev'));
 // - - - - = = = = Model = = = = - - - -
 const uniqueValidator = require('mongoose-unique-validator');
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/bike-api');
+mongoose.connect('mongodb://localhost/bikeTwo-api');
 mongoose.connection.on('connected', () => console.log('connected to MongoDB'));
 mongoose.Promise = global.Promise;
 const { Schema } = mongoose;
@@ -106,9 +106,14 @@ const userController = {
 
   create: (request, response) => {
     request.body.password=bcrypt.hashSync(request.body.password)
-    //console.log("creating new user", request.body)
+    console.log("creating new user", request.body)
     User.create(request.body)
-      .then(users => response.json(users))
+      .then(user=> {
+        console.log("new user id is",user._id)
+            request.session.userID=user._id;
+            console.log("added user successfuly ,setting cookie and logging in")
+              return response.json(request.session)
+            })
       .catch(err => {console.log("transmitting error",err)
                       response.status(500).json(err)
             })
@@ -151,7 +156,7 @@ const userController = {
             return      response.status(500).json(err)
           }
     if(data){
-                console.log(data)
+            //    console.log(data)
         return response.json(data)}
         } )//end exec
   }
@@ -166,7 +171,7 @@ const bikeController = {
               return      response.status(500).json(err)
             }
       if(data){
-                  console.log(data)
+                //  console.log(data)
           return response.json(data)}
 
     })//end exec
@@ -241,11 +246,13 @@ app
 .post('/bikes', bikeController.create)
 .post('/updateBike',bikeController.updateBike)
 .post('/deleteBike',bikeController.deleteBike)
-.all("*", (req,res,next) => {
-  res.sendFile(path.resolve("./public/dist/index.html"))
-});
+//.all("*", (req,res,next) => {
+//  res.sendFile(path.resolve("./public/dist/index.html"))
+//});
 
-
+.all('*', function(request, response) {
+  response.sendfile(path.join(__dirname, './storeApp/dist/index.html'));
+})
 // - - - - = = = ALTERNATIVE ROUTES = = = - - - -
 //app.get('/tasks', (request, response) => { /*…*/ })
 //app.post('/tasks', (request, response) => { /*…*/ })

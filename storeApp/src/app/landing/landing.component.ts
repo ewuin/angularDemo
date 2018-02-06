@@ -29,7 +29,7 @@ randomBike:BIKE
       data=>{console.log(data)
                this.bikesList=data
             //   var randomNum = Math.floor(Math.random() * this.bikesList.length-1);
-               this.randomBike=this.bikesList[Math.floor(Math.random() * this.bikesList.length-1)]
+               this.randomBike=this.bikesList[Math.floor(Math.random() * (this.bikesList.length-1))]
            },
       err=>console.log("error in code",err)
     )
@@ -45,7 +45,15 @@ randomBike:BIKE
     this.user.email=this.user.email.toLowerCase() //store emails in lowercase
     console.log(this.user)
     this._dataService.createUser(this.user).subscribe(
-      users=>console.log(users),
+      cookie=>{console.log(cookie.userID)
+              if (cookie.userID==null||cookie.userID==undefined){this.errorString="login code broken!"
+              this._router.navigate(['/landing'])
+            }
+            else if(cookie.userID){
+              console.log("Rerouting to Browse")   //succssful login reroutes to browse/:id
+              this._router.navigate(['/browse'])
+            }
+      },
 
       err=>{let errObj=JSON.parse(err._body)
             if (errObj.code==11000){ this.errorString="Email already registered!"
@@ -65,7 +73,7 @@ randomBike:BIKE
             }
             else if(cookie.userID){
               console.log("Rerouting to Browse")   //succssful login reroutes to browse/:id
-              this._router.navigate(['/browse',cookie.userID])
+              this._router.navigate(['/browse'])
             }
       },
 

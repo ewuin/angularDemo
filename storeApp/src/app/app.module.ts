@@ -10,7 +10,8 @@ import { LandingComponent } from './landing/landing.component';
 import { BrowseComponent } from './browse/browse.component';
 import { MyBikesComponent } from './my-bikes/my-bikes.component';
 
-import {BikeDataService} from './bike-data.service'
+import {BikeDataService} from './bike-data.service';
+import { NotFoundComponent } from './not-found/not-found.component'
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {BikeDataService} from './bike-data.service'
     AppComponent,
     LandingComponent,
     BrowseComponent,
-    MyBikesComponent
+    MyBikesComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

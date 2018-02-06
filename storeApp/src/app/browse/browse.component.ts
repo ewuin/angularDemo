@@ -20,12 +20,12 @@ export class BrowseComponent implements OnInit {
   constructor(private _route: ActivatedRoute,
               private _dataService:BikeDataService) {
 
-   	      this._route.paramMap.subscribe( params => {
+/*   	      this._route.paramMap.subscribe( params => {
        	       //console.log(params);
                //console.log(params.get('id'))
               this.userID=params.get('id')
    	      })
-
+*/  //removed routes  browse/:id
      }
 
      ngOnInit() {
