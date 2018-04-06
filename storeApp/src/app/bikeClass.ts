@@ -12,6 +12,7 @@ export class BIKE{
     public price:number,
     public location:address,
     public image:any,
-    public _owner:string
+    public _owner:string,
+    public mapstring:string
   ){}
 }

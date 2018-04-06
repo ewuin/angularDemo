@@ -12,7 +12,7 @@ import { MyBikesComponent } from './my-bikes/my-bikes.component';
 
 import {BikeDataService} from './bike-data.service';
 import { NotFoundComponent } from './not-found/not-found.component'
-
+import {ngFileUpload} from 'ng-file-upload'
 
 @NgModule({
   declarations: [
@@ -26,9 +26,10 @@ import { NotFoundComponent } from './not-found/not-found.component'
     BrowserModule,
     HttpModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ngFileUpload
   ],
-  providers: [BikeDataService],
+  providers: [BikeDataService],// {provide: LAZY_MAPS_API_CONFIG, useClass: GoogleMapsConfig}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

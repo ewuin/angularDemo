@@ -70,6 +70,10 @@ const bikeSchema = new Schema({
   },
   image:{data:Buffer,contentType:String},
 
+  mapstring:{
+    type:String,
+    trim:true
+  },
   _owner:{type:Schema.Types.ObjectId, ref:'user'}
 },
  {
@@ -137,7 +141,7 @@ const userController = {
 //if password don't match
           else{
             console.log("No passwords nooo Match")
-            return response.status(400).json({"err":"Password Incorrect"})
+            return response.status(400).json("Password Incorrect")
               }
 
           }// end outer else if
@@ -251,7 +255,7 @@ app
 //});
 
 .all('*', function(request, response) {
-  response.sendfile(path.join(__dirname, './storeApp/dist/index.html'));
+  response.sendFile(path.join(__dirname, './storeApp/dist/index.html'));
 })
 // - - - - = = = ALTERNATIVE ROUTES = = = - - - -
 //app.get('/tasks', (request, response) => { /*…*/ })

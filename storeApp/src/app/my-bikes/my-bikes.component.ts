@@ -13,11 +13,14 @@ import {address} from '../bikeClass'
 })
 export class MyBikesComponent implements OnInit {
   address:address=new address("","")
-  bike:BIKE= new BIKE("","",0,this.address,null,"")
+  bike:BIKE= new BIKE("","",0,this.address,null,"","")
   bikesList:BIKE[]
   userData:USER
   errorString:string;
   userID:any;  //this is the session ID, used for authentication
+  mapString1:string="https://maps.googleapis.com/maps/api/staticmap?center=";
+  mapString2:string="&zoom=10&size=600x300&maptype=roadmap&key=AIzaSyBHIAkveSpcKR-BENVr-W7DTwd54PBdMu0";
+  mapStringFull:string="";
   constructor(private _route: ActivatedRoute,
               private _dataService:BikeDataService,
               private _router:Router) {
@@ -67,13 +70,22 @@ getBikes(id){
 }
 
    onSubmit(){
+     var f = document.getElementById('imagefile')
+     var f2 = document.getElementById('imageupload')
+
+     console.log(f2)
+    //r = new FileReader();
+
       this.bike._owner=this.userID;
       this.bike.location=this.address
+      this.mapStringFull=`${this.mapString1}${this.bike.location.city},${this.bike.location.state}${this.mapString2}`
+      this.bike.mapstring=this.mapStringFull
       console.log(this.bike)
       this._dataService.createBike(this.bike)  //creates bike and pushes to user bikesOwned array
       //reset data fields after submit
       this.address=new address("","")
-      this.bike=new BIKE("","",0,this.address,null,"")
+
+      this.bike=new BIKE("","",0,this.address,null,"","")
    }
 
    logOut(){
@@ -85,6 +97,7 @@ getBikes(id){
    onEditSubmit(event,bikeTE){
      console.log(event)
      console.log(bikeTE)
+     bikeTE.mapstring=`${this.mapString1}${bikeTE.location.city},${bikeTE.location.state}${this.mapString2}`
      this._dataService.updateBike(bikeTE)
    }
 

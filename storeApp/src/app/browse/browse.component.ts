@@ -6,7 +6,6 @@ import {USER} from '../userClass'
 import {Router} from '@angular/router'
 
 
-
 @Component({
   selector: 'app-browse',
   templateUrl: './browse.component.html',
@@ -17,9 +16,11 @@ export class BrowseComponent implements OnInit {
 //  usersList:USER[]
   errorString:string;
   userID:string;
-  constructor(private _route: ActivatedRoute,
-              private _dataService:BikeDataService) {
 
+  constructor(private _route: ActivatedRoute,
+              private _dataService:BikeDataService,
+          //  private googleMapsConfig: GoogleMapsConfig
+          ) {
 /*   	      this._route.paramMap.subscribe( params => {
        	       //console.log(params);
                //console.log(params.get('id'))

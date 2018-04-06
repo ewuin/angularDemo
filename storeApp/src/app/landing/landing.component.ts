@@ -80,7 +80,7 @@ randomBike:BIKE
       err=>{
             console.log("error returned to component: ",err._body)
             if (err._body=="null"){this.errorString="Email or password not correct!"}
-             else{this.errorString="Login Unsuccessful"}
+             else{this.errorString=err._body.replace(/"/g,'')}
                           console.log(this.errorString)
                         }
 

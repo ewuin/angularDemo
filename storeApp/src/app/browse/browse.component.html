@@ -1,10 +1,9 @@
 <router-outlet></router-outlet>
-
+<!DOCTYPE html>
 <div id="wrapper">
 
 <div id="header">
 <h1>Bicycle Marketplace</h1>
-  browse works! {{userID}}
 <a [routerLink]="['/browse']">Browse</a> | <a [routerLink]="['/mybikes']">My Listings</a> |<a (click)="logOut()">Logout</a>
 
 </div>
@@ -16,6 +15,10 @@
 <p>{{b.description}}</p>
 <h3>${{b.price}}</h3>
 <p>{{b.location.city}},{{b.location.state}}</p>
+
+<img src={{b.mapstring}}
+ alt="map">
+
 <p>Contact: {{b._owner.firstName}} at {{b._owner.email}}</p>
 </div>
 

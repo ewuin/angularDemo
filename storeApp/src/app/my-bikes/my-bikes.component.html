@@ -14,8 +14,8 @@
     <label>Bike Name/Title: <input name="title" type="text" required [(ngModel)]="bike.title" #title="ngModel"></label>
     <label>Description: <textarea name="description" cols="30" rows="4" placeholder="Enter a description here ..." required [(ngModel)]="bike.description" #description="ngModel"></textarea></label>
     <label>City: <input type="text" name="addressCity" required minlength="3" maxlength="45" [(ngModel)]="address.city" #addressCity='ngModel'> </label>
-    {{addressCity.errors |json}}
-    {{addressCity.valid |json}}
+    <label>Photo: <input id="imageupload" type="file" ngf-select [(ngModel)]="bike" name="image"
+             accept="image/*" ngf-max-size="10MB" required></label>
   <label>State: <select name="addressState" required [(ngModel)]="address.state" #addressState='ngModel'>
     <option value="AL">Alabama</option>
     <option value="AK">Alaska</option>
